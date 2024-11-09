@@ -1,0 +1,25 @@
+#Print the rangoli in python language
+def print_rangoli(size):
+    st="abcdefghijklmnopqrstuvwxyz"
+    n=size
+    col=(n-1)*4+1      # Total columns made for given row size
+    for m in range(1,2*n):      #This loop for total row we need 2*n-1 row 
+        i=m                   # i is used to manipulate row so that m is not ultered
+        if(m>n):             # when row size increases entered row size than we need to reduce its size for calculation
+            i=2*n-m          
+        k=n-1-i           # K is used to calculate the string used in that row
+        if(k<0):            # when i is equal to entered row size than string index can't access
+            patt=st[n-1::-1]    # when (let n=i=5) n-i-1 gives -1 which is false index so no middle index needed
+        else:
+            patt = st[n-1:k:-1]
+        patt += patt[-2::-1]         # patt is used to find which alphabet used in that particular row
+        patt="-".join(patt)
+        for j in range(1,col+1):          # Now loop for column printing
+            if(j == (n-i)*2+1):           #This is the logic from where patt is printed
+                print(patt,end="")
+            else:
+                print("-",end="")         # patt is not printed than - is used
+            if(j+len(patt) > col):     # As patt has itself many length but we need total length 
+                break                  # of columns fixed so we check it and when it reach that we 
+        print()                        #come out of loop    print is used for new line
+print_rangoli(5)
